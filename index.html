@@ -1,19 +1,784 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upstream Digital - Criação de Sites Profissionais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0000cc',
+                        secondary: '#bdec00',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 0, 204, 0.1) 0%, rgba(189, 236, 0, 0.1) 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .price-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #bdec00;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/Tw9xBxpr/Group-5-2.png" alt="Upstream Digital Logo" class="h-12">
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-primary font-medium">Home</a>
+                <a href="#about" class="nav-link text-primary font-medium">Sobre</a>
+                <a href="#services" class="nav-link text-primary font-medium">Serviços</a>
+                <a href="#process" class="nav-link text-primary font-medium">Como Funciona</a>
+                <a href="#pricing" class="nav-link text-primary font-medium">Preços</a>
+                <a href="#contact" class="nav-link text-primary font-medium">Contato</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-primary focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-primary font-medium">Home</a>
+            <a href="#about" class="block py-2 text-primary font-medium">Sobre</a>
+            <a href="#services" class="block py-2 text-primary font-medium">Serviços</a>
+            <a href="#process" class="block py-2 text-primary font-medium">Como Funciona</a>
+            <a href="#pricing" class="block py-2 text-primary font-medium">Preços</a>
+            <a href="#contact" class="block py-2 text-primary font-medium">Contato</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4 leading-tight">
+                    Transforme sua presença online com um site profissional e funcional.
+                </h1>
+                <p class="text-lg text-gray-700 mb-8">
+                    Criamos sites modernos, otimizados e feitos sob medida para seu negócio. Tenha um site que atrai, converte e impressiona!
+                </p>
+                <a href="https://wa.me/554195260377?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20site." 
+                   class="bg-primary hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Fale com um especialista
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
+                     alt="Site profissional" 
+                     class="rounded-lg shadow-xl w-full max-w-md animate-float">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Por que escolher nossa empresa para criar seu site?</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                    <p class="text-lg text-gray-700 mb-6">
+                        Somos especialistas em criação de sites com foco em resultados. Nossa missão é entregar soluções digitais de alta qualidade, que atendam às necessidades de cada cliente de forma personalizada.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        Seja para uma pequena empresa ou um grande projeto, temos a experiência necessária para oferecer a melhor plataforma para o seu negócio crescer online.
+                    </p>
+                    <div class="bg-secondary text-primary font-bold py-3 px-6 rounded-lg inline-block">
+                        <i class="fas fa-star mr-2"></i> Experiência em diversos setores: negócios locais, e-commerce, blogs e portais de conteúdo.
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="text-primary text-4xl mb-3">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Design Moderno</h3>
+                            <p class="text-gray-600">Sites com designs atuais que impressionam seus clientes.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="text-primary text-4xl mb-3">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Responsivo</h3>
+                            <p class="text-gray-600">Funciona perfeitamente em todos os dispositivos.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="text-primary text-4xl mb-3">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Rápido</h3>
+                            <p class="text-gray-600">Otimizado para performance e velocidade de carregamento.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="text-primary text-4xl mb-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Otimizado</h3>
+                            <p class="text-gray-600">Pronto para SEO e conversão de visitantes em clientes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Nossos Serviços</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+                    Desenvolvemos soluções completas para sua presença online. Confira os tipos de sites que criamos:
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-building text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">Sites Institucionais</h3>
+                        <p class="text-gray-600 mb-4">
+                            Para empresas que desejam transmitir credibilidade e oferecer informações sobre seus produtos ou serviços.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Design profissional
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Até 5 páginas
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Formulário de contato
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">E-commerce</h3>
+                        <p class="text-gray-600 mb-4">
+                            Criação de lojas virtuais funcionais, seguras e otimizadas para aumentar suas vendas.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Catálogo de produtos
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Carrinho de compras
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Integração com pagamentos
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-blog text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">Blogs e Portais</h3>
+                        <p class="text-gray-600 mb-4">
+                            Projetos ideais para quem deseja compartilhar conteúdo e engajar o público.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Sistema de posts
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Categorias e tags
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Área de comentários
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-mobile text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">Sites Responsivos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Todos os nossos sites são otimizados para dispositivos móveis, garantindo a melhor experiência.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Adaptável a qualquer tela
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Touch-friendly
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Performance otimizada
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-tools text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">Manutenção</h3>
+                        <p class="text-gray-600 mb-4">
+                            Oferecemos planos de manutenção contínuos para garantir que seu site esteja sempre funcionando bem.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Atualizações regulares
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Backup diário
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Suporte técnico
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-search-dollar text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">SEO</h3>
+                        <p class="text-gray-600 mb-4">
+                            Otimização para mecanismos de busca para que seu site seja encontrado pelos clientes certos.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Pesquisa de palavras-chave
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Otimização técnica
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Relatórios de desempenho
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">O Processo de Criação do Seu Site</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row mb-8">
+                    <div class="md:w-1/4 flex flex-col items-center mb-4 md:mb-0">
+                        <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-2">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold text-primary text-center">Consultoria Inicial</h3>
+                    </div>
+                    <div class="md:w-3/4 md:pl-8 flex items-center">
+                        <p class="text-lg text-gray-700">
+                            Conversamos sobre suas necessidades, objetivos e preferências para entender completamente o que você espera do seu site.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row mb-8">
+                    <div class="md:w-1/4 flex flex-col items-center mb-4 md:mb-0">
+                        <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-2">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold text-primary text-center">Proposta Personalizada</h3>
+                    </div>
+                    <div class="md:w-3/4 md:pl-8 flex items-center">
+                        <p class="text-lg text-gray-700">
+                            Enviamos um orçamento claro com detalhes do projeto, prazos e todas as especificações acordadas na consultoria.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row mb-8">
+                    <div class="md:w-1/4 flex flex-col items-center mb-4 md:mb-0">
+                        <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-2">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold text-primary text-center">Desenvolvimento</h3>
+                    </div>
+                    <div class="md:w-3/4 md:pl-8 flex items-center">
+                        <p class="text-lg text-gray-700">
+                            Criamos seu site com design único e funcionalidade que atenda às suas expectativas, mantendo você informado em cada etapa.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/4 flex flex-col items-center mb-4 md:mb-0">
+                        <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-2">
+                            4
+                        </div>
+                        <h3 class="text-xl font-bold text-primary text-center">Entrega e Suporte</h3>
+                    </div>
+                    <div class="md:w-3/4 md:pl-8 flex items-center">
+                        <p class="text-lg text-gray-700">
+                            Após aprovação, entregamos o site e oferecemos suporte contínuo para ajustes e melhorias, garantindo sua satisfação total.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">O que nossos clientes dizem</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-2xl mx-auto">
+                    Em breve, depoimentos de clientes satisfeitos! Estamos trabalhando para construir nossa base de clientes felizes.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Placeholder testimonial 1 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary font-bold">
+                            JD
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">João da Silva</h4>
+                            <p class="text-sm opacity-80">Empresa XYZ</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Ótimo serviço! Nosso site ficou exatamente como queríamos e já estamos vendo resultados."
+                    </p>
+                    <div class="flex mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Placeholder testimonial 2 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary font-bold">
+                            MA
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Maria Andrade</h4>
+                            <p class="text-sm opacity-80">Loja ABC</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Profissionais muito competentes e atenciosos. Nosso e-commerce superou todas as expectativas."
+                    </p>
+                    <div class="flex mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Placeholder testimonial 3 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary font-bold">
+                            CP
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Carlos Pereira</h4>
+                            <p class="text-sm opacity-80">Consultor</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Recomendo a todos que precisam de um site profissional. O atendimento e o resultado foram excelentes."
+                    </p>
+                    <div class="flex mt-4 text-secondary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Pacotes de Preços</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+                    Temos planos para todos os orçamentos. Fale conosco e saiba mais sobre o pacote ideal para seu negócio.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 border-t-4 border-secondary">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Pacote Básico</h3>
+                        <p class="text-gray-600 mb-6">Ideal para quem precisa de um site simples e eficaz</p>
+                        <div class="text-4xl font-bold text-primary mb-6">R$ 1.499</div>
+                        <ul class="text-gray-700 space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> 1 página institucional
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Design responsivo
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Formulário de contato
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Integração com redes sociais
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-2"></i> Sem e-commerce
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-secondary hover:bg-yellow-400 text-primary font-bold py-3 px-4 rounded text-center transition duration-300">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Intermediate Plan -->
+                <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 border-t-4 border-primary transform scale-105">
+                    <div class="bg-primary text-white py-2 text-center font-bold">
+                        MAIS POPULAR
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Pacote Intermediário</h3>
+                        <p class="text-gray-600 mb-6">Para empresas que precisam de mais funcionalidades</p>
+                        <div class="text-4xl font-bold text-primary mb-6">R$ 2.999</div>
+                        <ul class="text-gray-700 space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Até 5 páginas
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Blog integrado
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Galeria de imagens
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> SEO básico
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-2"></i> Sem e-commerce
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-primary hover:bg-blue-800 text-white font-bold py-3 px-4 rounded text-center transition duration-300">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Complete Plan -->
+                <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 border-t-4 border-secondary">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Pacote Completo</h3>
+                        <p class="text-gray-600 mb-6">Um projeto completo com e-commerce e ferramentas avançadas</p>
+                        <div class="text-4xl font-bold text-primary mb-6">R$ 5.999</div>
+                        <ul class="text-gray-700 space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> E-commerce completo
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Até 50 produtos
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> Pagamento online
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> SEO avançado
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i> 1 mês de suporte grátis
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-secondary hover:bg-yellow-400 text-primary font-bold py-3 px-4 rounded text-center transition duration-300">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <p class="text-gray-700 mb-6">
+                    Precisa de algo personalizado? Entre em contato para um orçamento sob medida.
+                </p>
+                <a href="https://wa.me/554195260377?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20site." 
+                   class="bg-primary hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Fale com um especialista
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Vamos conversar sobre o seu projeto!</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+                    Entre em contato conosco para uma consultoria gratuita ou para tirar dúvidas. Estamos à disposição para ajudá-lo a criar o site perfeito para seu negócio.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <form id="contact-form" class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Assunto</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-blue-800 text-white font-bold py-3 px-4 rounded transition duration-300">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                <div class="md:w-1/2 md:pl-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Informações de Contato</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-secondary text-2xl mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Telefone/WhatsApp</h4>
+                                    <p class="text-gray-600">+55 (41) 9526-0377</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-secondary text-2xl mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">upstream@digital.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-secondary text-2xl mr-4 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Horário de Atendimento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 9h às 18h</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <img src="https://i.postimg.cc/TwcmbTvs/Group-3.png" alt="Upstream Digital Logo" class="h-10">
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-6 mb-4">
+                        <a href="#home" class="hover:text-secondary transition duration-300">Home</a>
+                        <a href="#about" class="hover:text-secondary transition duration-300">Sobre</a>
+                        <a href="#services" class="hover:text-secondary transition duration-300">Serviços</a>
+                        <a href="#pricing" class="hover:text-secondary transition duration-300">Preços</a>
+                        <a href="#contact" class="hover:text-secondary transition duration-300">Contato</a>
+                    </div>
+                    <div class="text-sm text-center md:text-right">
+                        <p>Upstream Digital - Criação de Sites Profissionais</p>
+                        <p>+55 (41) 9526-0377 | upstream@digital.com</p>
+                        <p>&copy; 2023 Upstream Digital. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-secondary text-primary w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:upstream@digital.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                `Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`
+            )}`;
+            
+            // Open default email client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+            
+            // Show confirmation (optional)
+            alert('Obrigado por sua mensagem! Você será redirecionado para seu cliente de e-mail.');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=MatheusMathiasFernandes/upstream-technology" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
